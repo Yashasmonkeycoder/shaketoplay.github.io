@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  
+    <title>shake to play</title>
+    <style type="text/css" media="all">
+    html{
+      touch-action: manipulation;
+      font-size: 40px;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu&display=swap');
+    @keyframes popp{
+      0%{transform:scale(0);}
+      100%{transform:scale(1.1);}
+    }
+    @keyframes shake{
+      0%{top:-60%; left:-60%;}
+      25%{top:-50%; left:-65%;}
+      50%{top:-55%; left:-50%;}
+      75%{top:-45%; left:-60%;}
+      100%{top:-60%; left:-60%;}
+    }
+      #pop{
+        width: 75%;
+        height: 650px;
+        border: ridge #c0ac74 20px;
+        position: absolute;
+        left: 10%;
+        top: 28%;
+        background-color: #d5cfac;
+        transform: scale(1.1);
+        animation-name: popp;
+        animation-duration: 1s;
+        animation-iteration-count: 1;
+        display: none;
+      }
+      #text{
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        text-align: center;
+        font-family: 'Ubuntu', sans-serif;
+      }
+      #cancell{
+        border: solid #060505 3px;
+        width: 80px;
+        height: 80px;
+        text-align: center;
+        color: red;
+        position: absolute;
+        top: -10%;
+        left:85%;
+      }
+      #mobile{
+        transform: scale(0.4);
+        position: absolute;
+        left: -60%;
+        top:-60%;
+        animation-name: shake;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+      }
+      #music{
+        transform: scale(3);
+        position: absolute;
+        left: 40%;
+        top: 45%;
+        width: 180px;
+        text-align: center;
+        border: ridge #c592d7 6px;
+        border-radius: 40px;
+        box-shadow: 10px -2px 8px #888888;
+      }
+      #riwro{
+        position: absolute;
+        left: 45%;
+        top: 51%;
+      }
+      .title{
+        position: absolute;
+        left: 25%;
+        top: 32%;
+        font-family: 'Bebas Neue', cursive;
+        letter-spacing: 2px;
+      }
+       #popt{
+        width: 75%;
+        height: 650px;
+        border: ridge #c0ac74 20px;
+        position: absolute;
+        left: 10%;
+        top: 28%;
+        background-color: #d5cfac;
+        transform: scale(1.1);
+        animation-name: popp;
+        animation-duration: 1s;
+        animation-iteration-count: 1;
+        display: block;
+      }
+        #textt{
+        position: absolute;
+        top:10%;
+        text-align: center;
+        font-family: 'Ubuntu', sans-serif;
+      }
+      #hint{
+        font-family: 'Bebas Neue', cursive;
+        position: absolute;
+        left: 80%;
+        font-size: 100px;
+        border: solid #abd5e0 10px;
+        border-radius: 30px;
+        display:none;
+      }
+    </style>
+  </head>
+<body>
+  <h1 class="title">Paste link here:</h1>
+  <input type="text" name="music" id="music" oninput="inputok()"/>
+  <h1 id="riwro"> </h1>
+  <div id="pop">
+  <img src="Mobile.png" alt="loading..." id="mobile" />
+    <h2 id="text">Shake phone to play and pause the music</h2>
+    <h1 id="cancell" onclick="closse()">×</h1>
+  </div>
+   <div id="popt">
+    <h2 id="textt"><a class="click here" href="https://www.google.com/url?sa=t&source=web&rct=j&url=https://drive.google.com/drive/my-drive&ved=2ahUKEwjF57WIuL_0AhWcT2wGHR8jBvUQFnoECEUQAQ&usg=AOvVaw0bjlhvpcnM18wWebxM6XFA">click here</a>,To visit google drive and upload your audio file there.. after uploading click on the three dot and click copy link and paste that link here</h2>
+    <h1 id="cancell" onclick="closse()">×</h1>
+  </div>  <h1 id="hint" onclick="ideaa()">❓</h1>
+  <audio src="#" hidden="true" id="musicc">
+    Your browser does not support the audio element.
+    </audio>
+</body>
+</html>
+<script type="text/javascript" charset="utf-8">
+var started = false;
+  function closse(){
+  document.getElementById("pop").style.display="none"
+  document.getElementById("popt").style.display="none"
+}
+function start(){
+  document.getElementById("musicc").play();
+}
+var cunta = 0;
+var ab = "";
+var abc = "";
+function inputok(){
+var a = document.getElementById("music").value;
+if(a.includes("https://drive.google.com/file/d/") && a.includes("/view?usp=drivesdk")){
+  ab = a.replace("https://drive.google.com/file/d/","");
+  abc = ab.replace("/view?usp=drivesdk","");
+  document.getElementById("musicc").src="https://drive.google.com/uc?export=veiw&id="+abc
+  document.getElementById("riwro").innerText="✅"
+  document.getElementById("music").style.boxShadow = "10px -2px 20px #69dd64"
+  document.getElementById("pop").style.display="block"
+  started = true;
+  document.getElementById("hint").style.display="block"
+}
+else{
+  if(cunta%5==0){
+alert("The link or text that you have entered is wrong, please make sure to follow the instructions and get the link from google drive, it should be like this - https://drive.google.com/file/d/140H3CjURxTrbIIVzf-RSKiFabx834pHB/view?usp=drivesdk");
+navigator.vibrate(200);
+}
+cunta+=1;
+started = false;
+  document.getElementById("riwro").innerText="❌"
+  document.getElementById("music").style.boxShadow = "10px -2px 20px #d93d3d"
+  document.getElementById("music").value=""
+}
+}
+let details = navigator.userAgent;
+let regexp = /android|iphone|kindle|ipad/i;
+let isMobileDevice = regexp.test(details); 
+ if (isMobileDevice){ 
+    console.log("all fine");
+    } 
+ else{ 
+       alert("hello! this project is compatible only for mobile devices and if you are using any other device, then this project may not work, if you are using a mobile device then please ignore this");
+        } 
+  var song = document.getElementById("musicc");
+  var bount = 0;
+  window.addEventListener('devicemotion', event => {
+  if(started == true){
+  if(event.acceleration.x >= 8){
+    if(bount%2==0){
+    song.play();
+      
+    }
+    else{
+      song.pause();
+    }
+    navigator.vibrate(100);
+    bount+=1;
+  }}
+});
+var nounat = 0;
+function ideaa(){
+  alert("If the music doesn't paly even the right mark comes, then it is because you might have given a wrong file rather than a audio file, please check once and try audio. *If the music doesn't stop after clicking this click it again to stop");
+  if(nounat%2==0){
+  song.play();
+  }
+  else{
+    song.pause();
+  }
+  nounat+=1;
+}
+</script>
